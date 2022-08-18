@@ -1,0 +1,21 @@
+import { Settings as LayoutSettings } from '@ant-design/pro-components';
+
+const Settings: LayoutSettings & {
+  pwa?: boolean;
+  logo?: string;
+} = {
+  navTheme: 'light',
+  // 拂晓蓝
+  primaryColor: '#1890ff',
+  layout: 'mix',
+  contentWidth: 'Fluid',
+  fixedHeader: false,
+  fixSiderbar: true,
+  colorWeak: false,
+  title: '暴躁的小胖子',
+  pwa: false,
+  logo: '/img/WeChat558145f27aef0fdd001e0d0fb195dae4.png',
+  iconfontUrl: '',
+};
+
+export default Settings;
