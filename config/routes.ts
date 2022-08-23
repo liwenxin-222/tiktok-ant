@@ -98,6 +98,12 @@
     component: './DouyinWeb',
   },
   {
+    name: 'word.title',
+    icon: 'table',
+    path: '/word-to-pdf',
+    component: './WordToPdf',
+  },
+  {
     name: 'about',
     path: '/about',
     icon: 'infoCircleOutlined',

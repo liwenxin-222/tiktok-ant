@@ -53,5 +53,6 @@ export default {
   'menu.douyin.title': '抖音小工具',
   'menu.douyin.title.list': '视频列表',
   'menu.douyin.title.detail': '视频详情',
+  'menu.word.title': 'Word 转 Pdf',
   'menu.about': '免责申明',
 };
