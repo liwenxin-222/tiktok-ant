@@ -104,6 +104,12 @@
     component: './WordToPdf',
   },
   {
+    name: 'alibaba.title',
+    icon: 'table',
+    path: '/alibaba-list',
+    component: './Alibaba/list'
+  },
+  {
     name: 'about',
     path: '/about',
     icon: 'infoCircleOutlined',

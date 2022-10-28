@@ -22,6 +22,13 @@ export default {
       // pathRewrite: {
       //   "/api": "/"
       // }
+    },
+    '/alibaba': {
+      target: 'http://www.liwenx.com:65535',
+      changeOrigin: true,
+      pathRewrite: {
+        "/alibaba": "/"
+      }
     }
   },
   // test: {

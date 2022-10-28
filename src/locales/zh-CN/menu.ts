@@ -55,4 +55,5 @@ export default {
   'menu.douyin.title.detail': '视频详情',
   'menu.word.title': 'Word 转 Pdf',
   'menu.about': '免责申明',
+  'menu.alibaba.title': '1688',
 };
