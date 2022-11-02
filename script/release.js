@@ -1,12 +1,30 @@
 const fs = require("fs");
 const colors = require("colors/safe");
 const child_process = require("child_process");
-const confirm = require("./confirm");
+const prompt = require("prompt");
 
 const tag_split_reg = /^(\d+)\.(\d+)\.(\d+)$/;
 const quit_process = () => process.exit(1);
 
+const promptPropsSchema = {
+  properties: {
+    confirm_info: {
+      description: "确认? - (Enter/NO)",
+      // required: true,
+      // pattern: /^[0-9]{1,6}$/,
+      // message: "'tenantId' 必须是数字",
+      ask: function(){
+        // 可以在此建立条件，是否询问输入，有些值可能会在别的输入中一并处理了
+        return true;
+      }
+    },
+  }
+};
+
+prompt.message = colors.cyan("\nRelease Confirm");
+
 const DIFF = child_process.execSync(`git diff`).toString().trim();
+
 if (DIFF) {
   console.log("ERROR-->", colors.red('您有未暂存的变更。请提交或贮藏它们'));
   process.exit(1);
@@ -67,3 +85,23 @@ async function release(tag){
     console.log(error);
   }
 }
+
+function confirm(){
+  return new Promise(function(resolve, reject){
+    prompt.start();
+    prompt.get(
+      promptPropsSchema,
+      function(err, res){
+        if(res.confirm_info && res.confirm_info.toLowerCase() === "no"){
+          reject();
+        }
+        else if(err){
+          reject();
+        }
+        else{
+          resolve();
+        }
+      }
+    );
+  });
+};
