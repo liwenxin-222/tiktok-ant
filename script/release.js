@@ -73,7 +73,7 @@ async function release(tag){
 
     if (curReleaseVer !== tag) {
       child_process.execSync(`git add ./release_tag`);
-      child_process.execSync(`git commit -m ${tag} ./release_tag --force`);
+      child_process.execSync(`git commit --no-verify -m ${tag} ./release_tag`);
       child_process.execSync(`git tag ${tag}`);
     }
     // const IS_clear = child_process.execSync(`git diff`).toString().trim();
