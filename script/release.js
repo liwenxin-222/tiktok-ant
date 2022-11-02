@@ -10,7 +10,7 @@ var DEFAULT_BRANCH = config.DEFAULT_BRANCH;
 var BRANCH_NAME = process.env.BRANCH_NAME;
 
 child_process.execSync(`git pull`);
-const current_tag = child_process.execSync(`git describe --tags \`git rev-list --tags --max-count=1`);
+const current_tag = child_process.execSync(`git describe --tags 'git rev-list --tags --max-count=1'`);
 
 
 // var RECENTLY_COMMIT_MESSAGES = child_process.execSync(`git log --pretty="%s" -30`);
