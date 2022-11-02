@@ -1,12 +1,18 @@
-var fs = require("fs");
-var colors = require("colors/safe");
-var child_process = require("child_process");
-var confirm = require("./confirm");
+const fs = require("fs");
+const colors = require("colors/safe");
+const child_process = require("child_process");
+const confirm = require("./confirm");
 
-// child_process.execSync(`git pull`);
+const tag_split_reg = /^(\d+)\.(\d+)\.(\d+)$/;
+const quit_process = () => process.exit(1);
 
-var tag_split_reg = /^(\d+)\.(\d+)\.(\d+)$/;
-var quit_process = () => process.exit(1);
+const DIFF = child_process.execSync(`git diff`).toString().trim();
+if (DIFF) {
+  console.log("ERROR-->", colors.red('您有未暂存的变更。请提交或贮藏它们'));
+  process.exit(1);
+}
+
+child_process.execSync(`git pull`);
 
 console.log("");
 
