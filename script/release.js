@@ -82,7 +82,7 @@ async function release(tag){
     child_process.execSync(`git push --tags`);
   }
   catch(error){
-    console.log(error);
+    // console.log(error);
   }
 }
 
