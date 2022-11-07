@@ -3,7 +3,8 @@ import { request } from '@umijs/max'
 export const getAlibabaList = () => {
 
   return new Promise((resolve, reject) => {
-    request(`/alibaba/test/api?v=${Date.now()}`, {
+
+    request(`/test/api?key_word=%E5%8A%A0%E6%B9%BF%E5%99%A8&size=1&v=${Date.now()}`, {
       method: "GET",
     }).then(function (response) {
       // console.log("response", response.data)

@@ -106,7 +106,7 @@
   {
     name: 'alibaba.title',
     icon: 'table',
-    path: '/alibaba-list',
+    path: '/1688-list',
     component: './Alibaba/list'
   },
   {
