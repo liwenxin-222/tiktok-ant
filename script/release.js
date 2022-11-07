@@ -1,9 +1,12 @@
 const fs = require("fs");
 const colors = require("colors/safe");
+// eslint-disable-next-line camelcase
 const child_process = require("child_process");
 const prompt = require("prompt");
 
+// eslint-disable-next-line camelcase
 const tag_split_reg = /^(\d+)\.(\d+)\.(\d+)$/;
+// eslint-disable-next-line camelcase
 const quit_process = () => process.exit(1);
 
 const promptPropsSchema = {
@@ -35,11 +38,11 @@ child_process.execSync(`git pull`);
 console.log("");
 
 // 查询上一个版本，验证指定的版本号，尾部 +1
-let lastReleaseVer = getLastReleaseTag({ last_release_check: true });
+let lastReleaseVer = getLastReleaseTag({last_release_check: true});
 
 // 版本号尾部 + 1
-let newReleaseVer = lastReleaseVer.replace(tag_split_reg, function(match, $1, $2, $3){
-  return $1 + "." + $2 + "." + ($3 * 1 + 1);
+let newReleaseVer = lastReleaseVer.replace(tag_split_reg, (match, $1, $2, $3)=> {
+  return `${$1 }.${ $2 }.${ $3 * 1 + 1}`;
 });
 console.log("new TAG", colors.cyan(newReleaseVer));
 confirm().then(
@@ -87,11 +90,11 @@ async function release(tag){
 }
 
 function confirm(){
-  return new Promise(function(resolve, reject){
+  return new Promise((resolve, reject)=> {
     prompt.start();
     prompt.get(
       promptPropsSchema,
-      function(err, res){
+      (err, res)=> {
         if(res.confirm_info && res.confirm_info.toLowerCase() === "no"){
           reject();
         }
