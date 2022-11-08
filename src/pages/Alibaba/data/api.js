@@ -4,7 +4,7 @@ export const getAlibabaList = () => {
 
   return new Promise((resolve, reject) => {
 
-    request(`/test/api?key_word=%E5%8A%A0%E6%B9%BF%E5%99%A8&size=1&v=${Date.now()}`, {
+    request(`/test/api?key_word=%E5%8A%A0%E6%B9%BF%E5%99%A8&size=60&v=${Date.now()}`, {
       method: "GET",
     }).then(function (response) {
       // console.log("response", response.data)

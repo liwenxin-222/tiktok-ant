@@ -1,9 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {Table, Popover, Button, Image} from 'antd';
+import {Table, Popover, Button, Image, Tag} from 'antd';
 import {getAlibabaList} from '../data/api';
 import s from './index.less';
 import moment from 'moment';
 
+const tagsColorMap = [
+  'magenta',
+  'red',
+  'volcano',
+  'orange',
+  'gold',
+  'lime',
+  'green',
+  'cyan',
+  'blue',
+  'geekblue',
+  'purple',
+];
 
 function AlibabaList() {
 
@@ -13,8 +26,11 @@ function AlibabaList() {
       title: '商品目录',
       dataIndex: 'brief',
       ellipsis: true,
+      width: 80,
       align: 'center',
-
+      render(text) {
+        return '暂无';
+      }
     },
     {
       title: '商品名称（中文）',
@@ -27,10 +43,35 @@ function AlibabaList() {
       // }
     },
     {
+      title: '标签',
+      dataIndex: 'attribute',
+      // ellipsis: true,
+      width: 100,
+      render(text, record, index) {
+        let html = [];
+
+        try {
+          const obj = JSON.parse(text.replace('\\', ''));
+          if (obj) {
+            if (obj['功能']) {
+
+              obj['功能'].split(',').forEach((item, index) => {
+                html.push(<Tag style={{marginBottom: 2}} color={tagsColorMap[index]}>{item}</Tag>)
+              })
+            }
+          }
+        } catch (e) {
+          //
+        }
+        return html;
+      }
+    },
+    {
       title: '主图',
       dataIndex: 'image',
       ellipsis: true,
       align: 'center',
+      width: 160,
       render(text) {
         let html = [];
         try {
@@ -57,8 +98,10 @@ function AlibabaList() {
     {
       title: '追加主图',
       dataIndex: 'images',
-      ellipsis: true,
+      // ellipsis: true,
       align: 'center',
+      width: 160,
+
       render(text) {
         // {
         //   "imageURI":"img/ibank/O1CN01KIWpcp2J2J8oXVXhH_!!2200733139363-0-cib.jpg",
@@ -94,7 +137,7 @@ function AlibabaList() {
               <div className={s.detailImagesPopoverContent}>{html}</div>
             } title="追加主图列表" trigger="click"
           >
-            <Button type="primary">点击查看列表</Button>
+            <Button size="small" type="primary">点击查看列表</Button>
           </Popover>
         );
       }
@@ -104,7 +147,7 @@ function AlibabaList() {
 
       title: '属性图',
       dataIndex: 'detail_group',
-      ellipsis: true,
+      // ellipsis: true,
       align: 'center',
       render(text) {
         let html = [];
@@ -127,12 +170,13 @@ function AlibabaList() {
         } catch (e) {
           //
         }
-        return html;
+        return <div className={s.detailGroupRowWrapper}>{html}</div>;
       }
     },
     {
       title: '详情图',
       dataIndex: 'detail_images',
+      width: 100,
       align: 'center',
       render(text) {
         let html = [];
@@ -158,7 +202,7 @@ function AlibabaList() {
                      <div className={s.detailImagesPopoverContent}>{html}</div>
                    } title="详情图列表" trigger="click"
           >
-            <Button type="primary">点击查看列表</Button>
+            <Button size="small" type="primary">点击查看列表</Button>
           </Popover>
         )
       }
@@ -171,11 +215,15 @@ function AlibabaList() {
       width: 80,
     },
     {
-      title: '运费',
-      dataIndex: 'logistics_text',
-      ellipsis: true,
-      align: 'center',
+      title: '运费（起发）',
+      dataIndex: 'startAmount',
+      // ellipsis: true,
+      width: 80,
 
+      align: 'center',
+      render(text, record) {
+        return text;
+      }
     },
     {
       title: '属性',
@@ -213,7 +261,9 @@ function AlibabaList() {
     {
       title: '体积',
       dataIndex: 'attribute',
-      ellipsis: true,
+      // ellipsis: true,
+      width: 80,
+
       align: 'center',
       render(text, record, index) {
         let html = '';
@@ -256,15 +306,16 @@ function AlibabaList() {
               </div>
             )
           })
-          return arr;
+          return <div className={s.skuInfoMapWrapper}>{arr}</div>;
         }
         return '';
       }
     },
     {
       title: '抓取日期',
-      ellipsis: true,
+      // ellipsis: true,
       align: 'center',
+      width: 80,
 
       dataIndex: 'ctime',
       render(text) {
@@ -278,8 +329,9 @@ function AlibabaList() {
     {
       title: '出库时间',
       dataIndex: 'sendTime',
-      ellipsis: true,
+      // ellipsis: true,
       align: 'center',
+      width: 80,
 
     },
     {
@@ -287,6 +339,7 @@ function AlibabaList() {
       dataIndex: 'city',
       ellipsis: true,
       align: 'center',
+      width: 80,
       render(text) {
         return '中国'
       }
@@ -299,7 +352,7 @@ function AlibabaList() {
       title: '商品网址',
       dataIndex: 'detail_url',
       ellipsis: true,
-      width: 80,
+      width: 100,
       align: 'center',
       render(text) {
         return <a target="_blank" href={text}>点击跳转详情</a>;
