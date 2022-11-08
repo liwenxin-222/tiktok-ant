@@ -2,12 +2,17 @@
   color: red;
 }
 
-.green  {
+.green {
   color: green;
 }
 
 .skuInfoMap {
-  display: flex;
+  //display: flex;
+
+  .kuInfoContent {
+    //text-align: right;
+    padding-left: 40px;
+  }
 }
 
 .babawrapper {
@@ -20,4 +25,29 @@
 
 :global(.ant-layout-sider) {
   background: #fbfbfb;
+}
+
+.marginB8 {
+  margin-bottom: 8px;
+}
+
+.detailGroupRow {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .detailGroupImg {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.detailImagesPopover {
+  width: 800px;
+
+  .detailImagesPopoverContent {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
