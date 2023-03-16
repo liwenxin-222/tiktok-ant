@@ -56,7 +56,7 @@ export default function XunFengTiKu() {
           style={{
             padding: '0 8px',
           }}>
-          <div dangerouslySetInnerHTML={{__html: title}}/>
+          <div dangerouslySetInnerHTML={{__html: `${item.id}. ${title}`}}/>
           <div>答案：{item.anwser}</div>
         </div>
       </List.Item>
@@ -75,7 +75,7 @@ export default function XunFengTiKu() {
             allowClear={true}
             placeholder="请输入关键词，不少于2个字"
             // minLength={2}
-            onFocus={() => {
+            onClick={() => {
               setV('')
             }}
           />
