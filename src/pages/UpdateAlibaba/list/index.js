@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {Table, Popover, Button, Image, Tag} from 'antd';
-import {getAlibabaList, getCoupangHotWord} from '../data/api';
+import React, {useEffect, useRef, useState} from 'react';
+import {Table, Popover, Button, Image, Tag, Modal, message} from 'antd';
+import {getAlibabaList, getCoupangHotWord, putRemoveBg} from '../data/api';
 import s from './index.less';
+import ImageEditer from '@/components/ImageEditer';
 import moment from 'moment';
 
 const tagsColorMap = [
@@ -21,6 +22,25 @@ const tagsColorMap = [
 function AlibabaList() {
 
   const [dataSource, setDataSource] = useState([]);
+  const [imgData, setImgData] = useState();
+  const ImageEditerREf = useRef();
+
+  function handleEditImage ({url}) {
+    setImgData(url);
+    ImageEditerREf.current.publicSetOpen(true);
+    // ImageEditerREf.current.publicSetImageData(url);
+  }
+
+  function handleRemoveBg(params) {
+    putRemoveBg(params).then((response) => {
+      if (response.code ===0 ) {
+        publicGetData();
+      } else {
+        message.error(response?.data[0]?.title || "失败")
+      }
+
+    })
+  }
   const columns = [
     {
       title: '商品目录',
@@ -72,11 +92,12 @@ function AlibabaList() {
       ellipsis: true,
       align: 'center',
       width: 160,
-      render(text) {
+      render(text, record) {
         let html = [];
         try {
           const obj = JSON.parse(text.replace('\\', ''));
           if (obj) {
+
             html.push(
               <div className={s.marginB8}>
                 <Image
@@ -85,6 +106,9 @@ function AlibabaList() {
                     src: obj['imgUrlOf290x290'],
                   }}
                 />
+                <br/>
+                <Button onClick={() => handleEditImage({url:  obj['imgUrlOf290x290']})}>重新编辑</Button>
+                <Button onClick={() => handleRemoveBg({url:  obj['imgUrlOf290x290'], id: record.id})}>去背景</Button>
               </div>
             )
           }
@@ -360,26 +384,23 @@ function AlibabaList() {
     },
   ]
 
-  function handleGetHotWords() {
-    getCoupangHotWord().then((res) => {
-      console.log(res);
+
+  function publicGetData() {
+    getAlibabaList().then((response) => {
+      setDataSource(response.data);
     })
   }
-
-
   useEffect(() => {
-    getAlibabaList().then((response) => {
-      setDataSource(response.result);
-    })
+    publicGetData();
   }, [])
-
 
   return (
     <div className={s.babawrapper}>
       <div className={s.wrapper}>
         <Table size="small" columns={columns} dataSource={dataSource}/>
+        <ImageEditer ref={ImageEditerREf} data={{url: imgData}}/>
       </div>
-      {/*<Button onClick={handleGetHotWords}>请求热搜关键词</Button>*/}
+
     </div>
   );
 }

@@ -4,12 +4,12 @@ export const getAlibabaList = () => {
 
   return new Promise((resolve, reject) => {
 
-    request(`/test/api?key_word=%E5%8A%A0%E6%B9%BF%E5%99%A8&size=60&v=${Date.now()}`, {
+    request(`/api/getUpdate1688List`, {
       method: "GET",
     }).then(function (response) {
-      // console.log("response", response.data)
-      if (response.status === 200) {
-        resolve(response.data);
+      console.log("response", response)
+      if (response.code === 0) {
+        resolve(response);
       } else {
         resolve(response);
       }
@@ -27,6 +27,28 @@ export const getCoupangHotWord = () => {
 
     request(`/api/getCoupangHotWord?v=${Date.now()}`, {
       method: "GET",
+    }).then(function (response) {
+      // console.log("response", response.data)
+      if (response.status === 200) {
+        resolve(response.data);
+      } else {
+        resolve(response);
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+      reject(error)
+    })
+  })
+
+}
+
+export const putRemoveBg = (params) => {
+  return new Promise((resolve, reject) => {
+
+    request(`/api/remove-bg?v=${Date.now()}`, {
+      method: "POST",
+      data: params
     }).then(function (response) {
       // console.log("response", response.data)
       if (response.status === 200) {

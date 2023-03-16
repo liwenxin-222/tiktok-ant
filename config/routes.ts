@@ -82,52 +82,74 @@
   // },
   {
     path: '/',
-    redirect: '/welcome',
+    redirect: '/xunfeng-tiku',
   },
   {
-    path: '/welcome',
+    path: '/xunfeng-tiku',
     name: 'welcome',
     icon: 'smile',
-    component: './Welcome',
+    component: './XunFengTiKu',
   },
-
-  {
-    name: 'douyin.title',
-    icon: 'table',
-    path: '/douyin-web',
-    component: './DouyinWeb',
-  },
-  {
-    name: 'word.title',
-    icon: 'table',
-    path: '/word-to-pdf',
-    component: './WordToPdf',
-  },
-  {
-    name: 'alibaba.title',
-    icon: 'table',
-    path: '/1688-list',
-    component: './Alibaba/list'
-  },
-  {
-    name: 'about',
-    path: '/about',
-    icon: 'infoCircleOutlined',
-    component: './About',
-    // hideInMenu: true
-  },
-  {
-    name: 'douyin.title.list',
-    path: '/douyin-web/:targetId',
-    component: './DouyinWeb/listDetail',
-    hideInMenu: true
-  },
-  {
-    name: 'douyin.title.detail',
-    path: '/douyin-web-item/:targetUrl',
-    component: './DouyinWeb/ItemDetail',
-    hideInMenu: true
-  },
+  // {
+  //   path: '/',
+  //   redirect: '/welcome',
+  // },
+  // {
+  //   path: '/welcome',
+  //   name: 'welcome',
+  //   icon: 'smile',
+  //   component: './Welcome',
+  // },
+  //
+  // {
+  //   name: 'douyin.title',
+  //   icon: 'table',
+  //   path: '/douyin-web',
+  //   component: './DouyinWeb',
+  // },
+  // {
+  //   name: 'word.title',
+  //   icon: 'table',
+  //   path: '/word-to-pdf',
+  //   component: './WordToPdf',
+  // },
+  // {
+  //   name: 'alibaba.title',
+  //   icon: 'table',
+  //   path: '/1688-list',
+  //   component: './Alibaba/list'
+  // },
+  // {
+  //   name: 'updateAlibaba.title',
+  //   icon: 'table',
+  //   path: '/update-1688-list',
+  //   component: './UpdateAlibaba/list'
+  // },
+  // {
+  //   name: 'test.title',
+  //   icon: 'table',
+  //   path: '/page-test',
+  //   component: './TestPage'
+  // },
+  // {
+  //   name: 'about',
+  //   path: '/about',
+  //   icon: 'infoCircleOutlined',
+  //   component: './About',
+  //   // hideInMenu: true
+  // },
+  // {
+  //   name: 'douyin.title.list',
+  //   path: '/douyin-web/:targetId',
+  //   component: './DouyinWeb/listDetail',
+  //   hideInMenu: true
+  // },
+  // {
+  //   name: 'douyin.title.detail',
+  //   path: '/douyin-web-item/:targetUrl',
+  //   component: './DouyinWeb/ItemDetail',
+  //   hideInMenu: true
+  // },
   {
     component: './404',
   },

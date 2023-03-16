@@ -16,6 +16,9 @@ const Settings: LayoutSettings & {
   pwa: false,
   logo: '/img/WeChat558145f27aef0fdd001e0d0fb195dae4.png',
   iconfontUrl: '',
+  menuRender: false,
+  headerRender: false,
+  footerRender: false, //不显示脚
 };
 
 export default Settings;
