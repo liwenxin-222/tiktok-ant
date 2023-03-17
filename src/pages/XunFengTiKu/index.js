@@ -56,8 +56,8 @@ export default function XunFengTiKu() {
           style={{
             padding: '0 8px',
           }}>
-          <div dangerouslySetInnerHTML={{__html: `${item.id}. ${title}`}}/>
-          <div>答案：{item.anwser}</div>
+          <div dangerouslySetInnerHTML={{__html: `${item.id + 1}. ${title}<br/>`}}/>
+          <div>答案：<b style={{color: 'green'}}>{item.anwser}</b></div>
         </div>
       </List.Item>
 
