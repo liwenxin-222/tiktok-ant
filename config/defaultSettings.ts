@@ -12,7 +12,7 @@ const Settings: LayoutSettings & {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: '巽分堂大课堂',
+  title: '巽风堂大课堂',
   pwa: false,
   logo: '/img/WeChat558145f27aef0fdd001e0d0fb195dae4.png',
   iconfontUrl: '',
