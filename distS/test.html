@@ -14,6 +14,7 @@
             xaf.report({aid: '100036', complete: function(r) {
                 if (r.code == 0) {
                     document.getElementsByClassName('code')[0].innerHTML = r.jt;
+                    console.log(r.jt);
                 }
             }})
         }
