@@ -8,15 +8,46 @@
 </head>
 <body>
     <div class="code"></div>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script data-bdms-faccdee21b68="eyJhcHBfa2V5IjoiMTAwMDY0IiwiYXBwX3ZpZXciOiJwcm9tb3RlIiwiYnJvd3Nlcl91cmwiOiJodHRwczovL3NvZmlyZS5iYWlkdS5jb20vZGF0YS91YS9hYi5qc29uIiwiZm9ybV9kZXNjIjoiIiwic2VuZF9pbnRlcnZhbCI6NTAsInNlbmRfbWV0aG9kIjozfQ==" src="http://sofire.bdstatic.com/js/dfxaf.js"></script>
     <script>
         window.onload = function() {
+          setInterval(function () {
+
             xaf.report({aid: '100036', complete: function(r) {
                 if (r.code == 0) {
-                    document.getElementsByClassName('code')[0].innerHTML = r.jt;
-                    console.log(r.jt);
+                    // document.getElementsByClassName('code')[0].innerHTML = r.jt;
+
+                    $.ajax({
+                      method: 'GET',
+                      url: '/goods/queryGoodsList?page=1&size=40',
+                      "headers": {
+                        "accept": "*/*",
+                        "accept-language": "zh-CN,zh;q=0.9",
+                        "authorization": "",
+                        "cache-control": "no-cache",
+                        "content-type": "application/json;",
+                        "pragma": "no-cache",
+                        "sec-ch-ua": "\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\"",
+                        "sec-ch-ua-mobile": "?0",
+                        "sec-ch-ua-platform": "\"macOS\"",
+                        "sec-fetch-dest": "empty",
+                        "sec-fetch-mode": "cors",
+                        "sec-fetch-site": "same-site",
+                        "x-xf-accept": r.jt,
+                        "Referer": "https://mall-h5.haowu.store/",
+                        "Referrer-Policy": "strict-origin-when-cross-origin"
+                      },
+                    }).then((res) => {
+                      // document.getElementsByClassName('code')[0].innerHTML = JSON.stringify(res.data);
+                      console.log(res.data);
+
+                    })
+
                 }
             }})
+          }, 10000)
+
         }
     </script>
 </body>
