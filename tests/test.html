@@ -1,22 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-    <div class="code"></div>
-    <script data-bdms-faccdee21b68="eyJhcHBfa2V5IjoiMTAwMDY0IiwiYXBwX3ZpZXciOiJwcm9tb3RlIiwiYnJvd3Nlcl91cmwiOiJodHRwczovL3NvZmlyZS5iYWlkdS5jb20vZGF0YS91YS9hYi5qc29uIiwiZm9ybV9kZXNjIjoiIiwic2VuZF9pbnRlcnZhbCI6NTAsInNlbmRfbWV0aG9kIjozfQ==" src="http://sofire.bdstatic.com/js/dfxaf.js"></script>
-    <script>
-        window.onload = function() {
-            xaf.report({aid: '100036', complete: function(r) {
-                if (r.code == 0) {
-                    document.getElementsByClassName('code')[0].innerHTML = r.jt;
-                }
-            }})
+<div class="code"></div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script data-bdms-faccdee21b68="eyJhcHBfa2V5IjoiMTAwMDY0IiwiYXBwX3ZpZXciOiJwcm9tb3RlIiwiYnJvd3Nlcl91cmwiOiJodHRwczovL3NvZmlyZS5iYWlkdS5jb20vZGF0YS91YS9hYi5qc29uIiwiZm9ybV9kZXNjIjoiIiwic2VuZF9pbnRlcnZhbCI6NTAsInNlbmRfbWV0aG9kIjozfQ==" src="http://sofire.bdstatic.com/js/dfxaf.js"></script>
+<script>
+
+  window.onload = function() {
+    // setInterval(function () {
+
+    function getAdressList(authorization) {
+      return $.ajax({
+        method: 'POST',
+        url: '/user/address/list',
+        "headers": {
+          "accept": "*/*",
+          "accept-language": "zh-CN,zh;q=0.9",
+          "authorization": "",
+          "cache-control": "no-cache",
+          "content-type": "application/json;",
+          "origin": "https://mall-h5.haowu.store",
+          "pragma": "no-cache",
+          "sec-ch-ua": "\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\"",
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": "\"macOS\"",
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "same-site",
+          // "x-xf-accept": r.jt,
+          "Referer": "https://mall-h5.haowu.store/",
+          "Referrer-Policy": "strict-origin-when-cross-origin",
+        },
+        data: JSON.stringify({
+          "qty": "1",
+          "skuId": "327",
+          "spuId": "279",
+          "cardId": ""
+        })
+      })
+
+    }
+    function checkout(r) {
+      return $.ajax({
+        method: 'POST',
+        url: '/order/checkout',
+        "headers": {
+          "accept": "*/*",
+          "accept-language": "zh-CN,zh;q=0.9",
+          "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJleHAiOjE2ODI0MDI4NTUsInVzZXJJZCI6MzY1NDgxMTM2NDQ5MDQ0NTcsImlhdCI6MTY4MTE5MzI1NX0.oeJsjpGJ4eYzd-LT-fY2IiolnadwtU382bLqQIPMpubaHcjme1qJ-NKBrK1YKaCmHTDA8LPdEweeSKR00Sn_mg",
+          "cache-control": "no-cache",
+          "content-type": "application/json;",
+          "origin": "https://mall-h5.haowu.store",
+          "pragma": "no-cache",
+          "sec-ch-ua": "\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\"",
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": "\"macOS\"",
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "same-site",
+          "x-xf-accept": r.jt,
+          "Referer": "https://mall-h5.haowu.store/",
+          "Referrer-Policy": "strict-origin-when-cross-origin",
+        },
+        data: JSON.stringify({
+          "qty": "1",
+          "skuId": "327",
+          "spuId": "279",
+          "cardId": ""
+        })
+      })
+    }
+
+    function commit(r, skuId, spuId, addressId, userId, authorization) {
+      checkout(r).then((checkData) => {
+        $.ajax({
+          method: 'POST',
+          url: '/order/commit',
+          "headers": {
+            "accept": "*/*",
+            "accept-language": "zh-CN,zh;q=0.9",
+            "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJleHAiOjE2ODI0MDI4NTUsInVzZXJJZCI6MzY1NDgxMTM2NDQ5MDQ0NTcsImlhdCI6MTY4MTE5MzI1NX0.oeJsjpGJ4eYzd-LT-fY2IiolnadwtU382bLqQIPMpubaHcjme1qJ-NKBrK1YKaCmHTDA8LPdEweeSKR00Sn_mg",
+            "cache-control": "no-cache",
+            "content-type": "application/json;",
+            "origin": "https://mall-h5.haowu.store",
+            "pragma": "no-cache",
+            "sec-ch-ua": "\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-site",
+            "x-xf-accept": r.jt,
+            "Referer": "https://mall-h5.haowu.store/",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+          },
+          contentType: 'application/json; charset=utf-8',
+          // dataType: 'application/json; charset=utf-8',
+          data: JSON.stringify({
+            "qty": 1,
+            "skuId": 327,
+            "spuId": 279,
+            "addressId": 292674,
+            "rid": checkData.data.rid,
+            "gbid": "2818726925709103569",
+            "cardId": "",
+            "userId": "36548113644904457",
+            "extra": "",
+            "sign": "29d44d63019fe82cb7e45915e60fc5ac5ef12a38e047f34309062169edfb6c82",
+            "bankId": 4
+          })
+        }).then((res) => {
+          // document.getElementsByClassName('code')[0].innerHTML = JSON.stringify(res.data);
+          console.log(res.data);
+
+        })
+      })
+
+    }
+
+    // setInterval(function () {
+
+    xaf.report({aid: '100036', complete: function(r) {
+        if (r.code == 0) {
+          // document.getElementsByClassName('code')[0].innerHTML = r.jt;
+          commit(r);
+          // $.ajax({
+          //   method: 'GET',
+          //   url: '/goods/queryGoodsList?page=1&size=40',
+          //   "headers": {
+          //     "accept": "*/*",
+          //     "accept-language": "zh-CN,zh;q=0.9",
+          //     "authorization": "",
+          //     "cache-control": "no-cache",
+          //     "content-type": "application/json;",
+          //     "pragma": "no-cache",
+          //     "sec-ch-ua": "\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\"",
+          //     "sec-ch-ua-mobile": "?0",
+          //     "sec-ch-ua-platform": "\"macOS\"",
+          //     "sec-fetch-dest": "empty",
+          //     "sec-fetch-mode": "cors",
+          //     "sec-fetch-site": "same-site",
+          //     "x-xf-accept": r.jt,
+          //     "Referer": "https://mall-h5.haowu.store/",
+          //     "Referrer-Policy": "strict-origin-when-cross-origin"
+          //   },
+          // }).then((res) => {
+          //   // document.getElementsByClassName('code')[0].innerHTML = JSON.stringify(res.data);
+          //   console.log(res.data);
+          //
+          // })
+          getAdressList("eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJleHAiOjE2ODI0MDI4NTUsInVzZXJJZCI6MzY1NDgxMTM2NDQ5MDQ0NTcsImlhdCI6MTY4MTE5MzI1NX0.oeJsjpGJ4eYzd-LT-fY2IiolnadwtU382bLqQIPMpubaHcjme1qJ-NKBrK1YKaCmHTDA8LPdEweeSKR00Sn_mg")
+
         }
-    </script>
+      }})
+    // }, 10000)
+
+  }
+</script>
 </body>
 </html>
